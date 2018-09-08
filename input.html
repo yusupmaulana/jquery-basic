@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Latihan Jquery</title>
+    <script src="jquery.js"></script>
+    <style media="screen">
+      #kotak{
+        background: rgb(162, 154, 91);
+        color: red;
+        height: 100px;
+        width: 100px;
+        padding: 10px;
+        margin: 10px;
+        border: 5px solid blue;
+      }
+      b{
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Program Input Sederhana</h1>
+    <form>
+      <input type="text" id="inputText">
+      <input type="submit">
+    </form>
+    <br>
+    <h3></h3>
+    <div id="hasil"></div>
+    <br>
+    <div id="kotak">click me to bigger!</div>
+  <script>
+    //memastikan file sudah di load dengan sempurna
+    $(document).ready(function(){
+
+      $('form').submit(function(){
+        var text = $('#inputText').val();
+
+        $('#hasil').text(text);
+
+        //mencegah sifat dari elemen
+        event.preventDefault();
+      });
+
+
+      $('h1').css('color','green');
+
+
+      $('h1').click(function(){
+
+        $('h1').css('color','yellow');
+
+      });
+
+
+      $('h1').mouseenter(function(){
+
+        $('h1').css('color','blue');
+
+      });
+
+
+      $('h1').mouseleave(function(){
+
+        $('h1').css('color','green');
+
+      });
+
+
+      $('#kotak').mouseenter(function(event) {
+        $('#kotak').height(200).width(200);
+        $('#kotak').css({
+          'background':'rgb(162, 154, 91)'
+        });
+      });
+
+      $('#kotak').mouseleave(function(event) {
+        $('#kotak').height(100).width(100);
+        $('#kotak').css('background','rgb(162, 154, 91)');
+        $('b').remove();
+
+      });
+
+      $('#kotak').click(function(event) {
+        $('#kotak').height(300).width(300);
+        $('#kotak').css('background','rgb(162, 154, 91)');
+        $('#kotak').after('<b>Kamu Juara!</b>');
+      });
+
+
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Belajar Jquery</title>
+    <script src="jquery.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <style media="screen">
+      #boxes_wrap{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 5px solid black;
+        margin: 10px;
+        background: grey;
+      }
+      .change{
+        background: yellow;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="change">Belajar Jquery!!</h1>
+
+    <div id="box1">Box 1</div>
+
+    <div id="boxes_wrap">
+      <div class="boxes">Baris pertama</div>
+      <div class="boxes">Baris kedua</div>
+      <div class="boxes">Baris ke dua koma lima</div>
+      <div class="boxes">Baris ketiga</div>
+    </div>
+
+    <form>
+      <input type="text" id="inputText">
+      <input type="submit">
+    </form>
+
+    <script>
+      // 1) memastikan file sudah di load dengan sempurna.
+      $(document).ready(function(){
+
+
+      // 2) cara memilih elemen
+            //metode css untuk mengedit css
+
+        // $('h1').css('color', 'blue');
+        // $('#box1').css('color', 'blue');
+        // $('.boxes').css('color', 'blue');
+
+        //untuk memilih elemen awal dari kelas boxes
+        // $('.boxes:first').css('color','red');
+
+        //memilih elemen dengan indeks ke 2 kelas boxes
+        // $('.boxes:eq(2)').css('color','red');
+
+        //untuk memilih elemen terakhir dari kelas boxes
+        // $('.boxes:last').css('color','aqua');
+
+
+      // 3) ======= event dan keyword this ==========
+        // $('h1').click(function(){
+        //
+        //   $('h1').css('color', 'yellow');
+        //
+        // });
+
+        // $('h1').mouseenter(function(){
+        //
+        //   $('h1').css('color', 'red');
+        //
+        // });
+        // $('h1').mouseleave(function(){
+        //
+        //   $('h1').css('color', 'green');
+        //
+        // });
+
+        //keyword this akan otomatis memilih elemen kelas boxes yang di pilih spesifik oleh mouse. engga semua nya langsung kepilih kelas boxesnya.
+        $('.boxes').mouseenter(function(){
+          $(this).css('color', 'yellow');
+
+        });
+
+        //4.  --- get dan set nilai ---
+
+        //metode submit berfungsi ketika tombol di submit
+        $('form').submit(function(){
+          //metode val berguna untuk mengambil isi nilai pada input text.
+          //bisa dimasukkan ke alert.
+          // metode val() == text() untuk get dan set nilai.
+          var tulisan = $('#inputText').val();
+          //1. metode text berguna untuk mengambil nilai dari h1
+          //2. metode text dengan argumen berguna untuk memberikan nilai pada elemen yg dipilih spt h1.
+          // $('h1').text('Selamat Datang');
+          //cek di console chrome DevTools.
+          $('h1').text(tulisan);
+
+          // $('form').html();
+          // 1). akan mengembalikan semua child elemen html nya.
+          // 2). dapat mengubah child elemen apabila metode html() disertai argumen. $('form').html('<b>halo</b>');
+
+          // mencegah sifat dari elemen
+          event.preventDefault();
+        });
+
+        // --- 5. Menambahkan dan menghapus elemen ---
+        // append => jadi last child nya boxes_wrap (di dalam)
+        // prepend => jadi first child dari boxes_wrap (di dalam)
+        // after   => menambahkan setelah boxes_wrap (bukan childnya)
+        // before  => menambahkan sebelum boxes_wrap (bukan childnya)
+        $('#boxes_wrap').before('<div>Halo</div>');
+
+        //remove dan empty
+        //remove => elemen beserta kontennya tdk ada.
+        //empty => menghapus kontennya saja tdk dgn elemennya
+
+        // $('#boxes_wrap').remove();
+
+
+        //--- 6. css di jquery ---
+        $('h1').click(function(){
+
+          // $('h1').css({
+          //   'color':'aqua',
+          //   'fontSize':'20px',
+          //   'backgroundColor':'grey'
+          // });
+
+          //menambahkan kelas, menghapus kelas, dan melakukan keduanya.
+          // $('h1').addClass('change');
+          // $('h1').removeClass('change');
+
+          //toggleClass akan menambahkan jika blm ada, dan jika sudah ada maka akan dihapus.
+          $('h1').toggleClass('change');
+        });
+
+
+
+        // --- 7. Mengambil nilai dimensi ---
+        // dimensi adalah ukuran-ukuran dari elemen kita
+        // bisa melihat dan merubah ukurannya.
+        // width -> content nya aja
+        // innerwidth -> content + padding
+        // outerwidth -> content + padding + border
+            // (true) -> + margin
+        // var nilai = $('#boxes_wrap').outerWidth();
+        // $('#box1').text(nilai);
+
+
+        // --- 8. Mengubah nilai dimensi ---
+        var nilai = $('#boxes_wrap').height(120).width(180);
+        // $('#box1').text(nilai);
+
+
+        // --- 9. Menampilkan dan menyembunyikan ---
+        
+
+
+
+
+
+
+
+      });
+    </script>
+  </body>
+</html>

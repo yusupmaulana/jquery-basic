@@ -1,0 +1,244 @@
+==================================
+0.Intro jquery
+jquery adalah library dari javascript.
+library yaitu kumpulan code yang ditulis oleh orang lain untuk dapat kita gunakan.
+-event -animasi -milih elemen -request ajax.
+==================================
+
+
+==================================
+1. Menyambungkan jquery dengan file html
+menyambungkan ada 2 cara yaitu:
+download dari website jquery nya langsung atau jquery cdn dari google pake inet.
+==================================
+
+
+==================================
+2. selection
+untuk memilih html nya.
+//cara memilih elemen
+//metode css untuk mengedit css
+
+$('h1').css('color', 'blue');
+$('#box1').css('color', 'blue');
+$('.boxes').css('color', 'blue');
+
+//untuk memilih elemen awal dari kelas boxes
+$('.boxes:first').css('color','red');
+
+//memilih elemen dengan indeks ke 2 kelas boxes
+$('.boxes:eq(2)').css('color','red');
+
+//untuk memilih elemen terakhir dari kelas boxes
+$('.boxes:last').css('color','aqua');
+==================================
+
+
+==================================
+3. event dan keyword this
+// 3) ======= event dan keyword this ==========
+  $('h1').click(function(){
+
+    $('h1').css('color', 'green');
+
+  });
+
+  $('h1').mouseenter(function(){
+
+    $('h1').css('color', 'red');
+
+  });
+  $('h1').mouseleave(function(){
+
+    $('h1').css('color', 'yellow');
+
+  });
+
+  //keyword this akan otomatis memilih elemen kelas boxes yang di pilih spesifik oleh mouse. engga semua nya langsung kepilih kelas boxesnya.
+  $('.boxes').mouseenter(function(){
+    $(this).css('color', 'yellow');
+
+  });
+==================================
+
+
+==================================
+4.mengambil dan mengubah konten html
+//4.  --- get dan set nilai ---
+
+//metode submit berfungsi ketika tombol di submit
+$('form').submit(function(){
+  //metode val berguna untuk mengambil isi nilai pada input text.
+  //bisa dimasukkan ke alert.
+  // metode val() == text() untuk get dan set nilai.
+  var tulisan = $('#inputText').val();
+  //1. metode text berguna untuk mengambil nilai dari h1
+  //2. metode text dengan argumen berguna untuk memberikan nilai pada elemen yg dipilih spt h1.
+  // $('h1').text('Selamat Datang');
+  //cek di console chrome DevTools.
+  $('h1').text(tulisan);
+
+  // $('form').html();
+  // 1). akan mengembalikan semua child elemen html nya.
+  // 2). dapat mengubah child elemen apabila metode html() disertai argumen. $('form').html('<b>halo</b>');
+
+  // mencegah sifat dari elemen
+  event.preventDefault();
+});
+==================================
+
+
+==================================
+5. Menghapus dan menambah elemen
+// append => jadi last child nya boxes_wrap (di dalam)
+// prepend => jadi first child dari boxes_wrap (di dalam)
+// after   => menambahkan setelah boxes_wrap (bukan childnya)
+// before  => menambahkan sebelum boxes_wrap (bukan childnya)
+$('#boxes_wrap').before('<div>Halo</div>');
+
+//remove dan empty
+//remove => elemen beserta kontennya tdk ada.
+//empty => menghapus kontennya saja tdk dgn elemennya
+$('#boxes_wrap').remove();
+==================================
+
+
+==================================
+6. Css di jquery
+//--- 6. css di jquery ---
+$('h1').click(function(){
+
+  // $('h1').css({
+  //   'color':'aqua',
+  //   'fontSize':'20px',
+  //   'backgroundColor':'grey'
+  // });
+
+  //menambahkan kelas, menghapus kelas, dan melakukan keduanya.
+  // $('h1').addClass('change');
+  // $('h1').removeClass('change');
+
+  //toggleClass akan menambahkan jika blm ada, dan jika sudah ada maka akan dihapus.
+  $('h1').toggleClass('change');
+});
+==================================
+
+
+==================================
+7. Mengambil nilai dimensi
+// dimensi adalah ukuran-ukuran dari elemen kita
+// bisa melihat dan merubah ukurannya.
+// width -> content nya aja
+// innerwidth -> content + padding
+// outerwidth -> content + padding + border
+    // (true) -> + margin
+// var nilai = $('#boxes_wrap').outerWidth();
+// $('#box1').text(nilai);
+==================================
+
+
+==================================
+// --- 8. Mengubah nilai dimensi ---
+var nilai = $('#boxes_wrap').height(120).width(180);
+// $('#box1').text(nilai);
+==================================
+
+
+==================================
+// --- 9. Menampilkan dan menyembunyikan ---
+
+// hide - show - toggle
+// $('#btn1').click(function(){
+//   $('#box1').show();
+// });
+//
+// $('#btn2').click(function(){
+//   $('#box1').hide();
+// });
+//
+// $('#btn3').click(function(){
+//   $('#box1').toggle();
+// });
+
+//fadeIn fadeOut fadeTo(time, opacity) fadeToggle
+//slideUp slideDown slideToggle
+==================================
+
+
+==================================
+// --- 10. Stop animasi chaining dan callback ---
+
+//stop animasi callback chaining
+$('#box1').stop();
+
+// callback -> fungsi yang dipanggil setelah fungsi sebelumnya selesai dikerjakan
+function munculkan_alert(){
+  alert('selamat kamu berhasil!');
+};
+
+$('#btn1').click(function(){
+  $('#box1').slideDown(2000, munculkan_alert);
+});
+
+
+// chaining -> menggabungkan beberapa metode menjadi satu baris
+$('#btn2').click(function(){
+  $('#box1').slideUp(2000).fadeIn(2000).fadeTo(2000, 0.5);
+});
+
+==================================
+
+
+==================================
+// --- 11. Traversing ---
+//sama seperti selection (cara memilih elemen ) tapi ini lebih tergantung pada elemen lainnya. Berdasarkan hubungannya dengan elemen lainnya.
+
+$('li').first().css("color", "red");
+$('li').eq(1).css("color","green");
+$('li:last').css("color", "blue");
+
+//filter hanya memilih berdasarkan id itu saja
+$('li').filter('#css').css('fontSize', '30px');
+
+//kalo not untuk memilih elemen selain elemen dengan id="css"
+$('li').not('#css').css('backgroundColor', 'yellow');
+==================================
+
+
+==================================
+//----12. siblings next nextAll nextUntil('param') ~ prev
+
+//siblings pengaruh ke saudaranya aja
+$('#css').siblings().css('fontSize', '20px');
+
+//next akan memilih satu elemen aja setelah elemen yang dipilih
+// $('#css').next().css('color', 'red');
+
+//nextAll akan memilih seluruh elemen setelah elemen yang dipilih
+
+//nextUntil akan memfilter sampai mana elemen yang akan dipilih.
+$('#css').nextUntil('#db').css('color', 'blue');
+==================================
+
+
+==================================
+//----13. Parent and children ----
+
+//children find Parent parents() parentsUntil()
+
+//children akan menyeleksi anak yg berada langsung dibawahnya
+//find akan menemukan span yang ada diluar maupun didalam (secara langsung atau tidak)
+// $('ul').find('span').css({
+//   color: 'red'
+// });
+
+
+//metode parent() akan memilih satu diatasnya
+
+//parents() akan memilih semua induknya / pembungkusnya kena semuanya
+
+// parentsUntil akan memfilter sampai mana parent yang dipilih (pembungkusnya)
+
+
+$('#css').parentsUntil('#test').css('border', '2px solid yellow');
+==================================

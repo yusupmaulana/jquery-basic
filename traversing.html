@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Belajar Jquery</title>
+    <script src="jquery.js"></script>
+  </head>
+  <body>
+    <h1>Traversing Jquery</h1>
+
+    <div id="test">
+      div pertama banget
+
+    <div>
+      div kedua banget
+    <div>
+      <ul>
+        <p>paragraf atas</p>
+        <li>Belajar!</li>
+        <li>html</li>
+        <li id="css">css</li>
+        <li>jquery</li>
+        <li>php</li>
+        <li id="db">database</li>
+        <li>server</li>
+        <div>
+          <p>paragraf dalam</p>
+          <span>span dalam</span>
+        </div>
+        <span>span luar</span>
+      </ul>
+    </div>
+  </div>
+
+</div>
+    <script>
+      $(document).ready(function(){
+          // --- 11. Traversing ---
+          //sama seperti selection (cara memilih elemen ) tapi ini lebih tergantung pada elemen lainnya. Berdasarkan hubungannya dengan elemen lainnya.
+
+          // $('li').first().css("color", "red");
+          // $('li').eq(1).css("color","green");
+          // $('li:last').css("color", "blue");
+
+          //filter hanya memilih berdasarkan id itu saja
+          // $('li').filter('#css').css('fontSize', '30px');
+
+          //kalo not untuk memilih elemen selain elemen dengan id="css"
+          // $('li').not('#css').css('backgroundColor', 'yellow');
+
+
+
+          //----12. siblings next nextAll nextUntil('param') ~ prev
+
+          //siblings pengaruh ke saudaranya aja
+          $('#css').siblings().css('fontSize', '20px');
+
+          //next akan memilih satu elemen aja setelah elemen yang dipilih
+          // $('#css').next().css('color', 'red');
+
+          //nextAll akan memilih seluruh elemen setelah elemen yang dipilih
+
+          //nextUntil akan memfilter sampai mana elemen yang akan dipilih.
+          // $('#css').nextUntil('#db').css('color', 'blue');
+
+
+          //----13. Parent and children ----
+
+          //children find Parent parents() parentsUntil()
+
+          //children akan menyeleksi anak yg berada langsung dibawahnya
+          //find akan menemukan span yang ada diluar maupun didalam (secara langsung atau tidak)
+          // $('ul').find('span').css({
+          //   color: 'red'
+          // });
+
+
+          //metode parent() akan memilih satu diatasnya
+
+          //parents() akan memilih semua induknya / pembungkusnya kena semuanya
+
+          // parentsUntil akan memfilter sampai mana parent yang dipilih (pembungkusnya)
+
+
+          $('#css').parentsUntil('#test').css('border', '2px solid yellow');
+
+
+      });
+    </script>
+
+  </body>
+</html>
